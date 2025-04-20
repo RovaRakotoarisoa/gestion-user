@@ -5,3 +5,19 @@
 [x-cloak] {
     display: none;
 }
+
+
+/* This is for resize table */
+th.resizable {
+    position: relative;
+}
+
+th.resizable .resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    cursor: col-resize;
+    user-select: none;
+}
