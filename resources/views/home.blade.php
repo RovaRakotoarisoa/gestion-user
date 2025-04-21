@@ -7,50 +7,38 @@
                 <table class="min-w-full table-fixed border-collapse">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="resizable px-4 py-2 text-left text-sm font-medium text-gray-600 w-32">
+                            <x-table-head-column>
                                 Avatar
-                                <div class="resizer"></div>
-                            </th>
-                            <th class="resizable px-4 py-2 text-left text-sm font-medium text-gray-600 w-64">
+                            </x-table-head-column>
+
+                            <x-table-head-column>
                                 Nom
-                                <div class="resizer"></div>
-                            </th>
-                            <th class="resizable px-4 py-2 text-left text-sm font-medium text-gray-600 w-96">
+                            </x-table-head-column>
+
+                            <x-table-head-column>
                                 Email
-                                <div class="resizer"></div>
-                            </th>
-                            <th class="resizable px-4 py-2 text-left text-sm font-medium text-gray-600 w-40">
-                                Rôle
-                                <div class="resizer"></div>
-                            </th>
+                            </x-table-head-column>
+
+                            <x-table-head-column>
+                                Role
+                            </x-table-head-column>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="px-4 py-3">
-                                <img src="https://i.pravatar.cc/40?u=1" alt="Jean Dupont" class="w-10 h-10 rounded-full object-cover">
-                            </td>
-                            <td class="px-4 py-3 text-sm text-gray-800 truncate" title="Jean Dupont">
-                                Jean Dupont
-                            </td>
-                            <td class="px-4 py-3 text-sm text-gray-600 truncate" title="jean.dupont@example.com">
-                                jean.dupont@example.com
-                            </td>
-                            <td class="px-4 py-3 text-sm text-gray-500 capitalize">Administrateur</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="px-4 py-3">
-                                <img src="https://i.pravatar.cc/40?u=1" alt="Jean Dupont" class="w-10 h-10 rounded-full object-cover">
-                            </td>
-                            <td class="px-4 py-3 text-sm text-gray-800 truncate" title="Jean Dupont">
-                                TESt
-                            </td>
-                            <td class="px-4 py-3 text-sm text-gray-600 truncate" title="jean.dupont@example.com">
-                                TESt.test@example.com
-                            </td>
-                            <td class="px-4 py-3 text-sm text-gray-500 capitalize">Administrateur</td>
-                        </tr>
-                        <!-- Ajoute d'autres lignes ici -->
+                        @foreach($users as $user)
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-4 py-3">
+                                    <img src="https://i.pravatar.cc/40?u=2" alt="{{ $user->name }}" class="w-10 h-10 rounded-full object-cover">
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-800 truncate" title="{{ $user->name }}">
+                                    {{ $user->name }}
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600 truncate" title="{{ $user->email }}">
+                                    {{ $user->email }}
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-500 capitalize">{{ $user->role }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
