@@ -20,3 +20,5 @@ Route::middleware([
 });
 
 Route::get('/home', [UserController::class,'index']);
+
+Route::resource('users', UserController::class);
