@@ -4,6 +4,12 @@
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Liste des utilisateurs</h2>
 
             <div class="overflow-x-auto">
+               
+                    <a href="{{ route('users.create') }}"> 
+                        <x-secondary-button class="w-100 rounded text-white py-2 float-right mb-4">
+                            Ajouter un utilisateur
+                        </x-secondary-button>
+                    </a>
                 <table class="min-w-full table-fixed border-collapse">
                     <thead class="bg-gray-100">
                         <tr>
