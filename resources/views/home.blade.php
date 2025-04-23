@@ -34,7 +34,11 @@
                         @foreach($users as $user)
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-4 py-3">
-                                    <img src="https://i.pravatar.cc/40?u=2" alt="{{ $user->name }}" class="w-10 h-10 rounded-full object-cover">
+                                    @if ($user->profile_photo_path)
+                                        <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Avatar" class="w-10 h-10 rounded-full">
+                                    @else
+                                        Pas d'avatar
+                                    @endif
                                 </td>
                                 <td class="px-4 py-3 text-sm text-gray-800 truncate" title="{{ $user->name }}">
                                     {{ $user->name }}
