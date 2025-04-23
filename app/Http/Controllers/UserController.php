@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 
@@ -31,7 +32,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate
+        $request-> validate([ 
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required',
+            'role' => 'required',
+            'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+        ]);
+        $profilePhotoPath = null;
+        if ($request->hasFile('avatar')) {
+            $profilePhotoPath = $request->file('avatar')->store('avatars', 'public');
+        }
+
+        //create
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role'=> $request->role,
+            'profile_photo_path' => $profilePhotoPath,
+        ]);
+
+        //redirect
+        return redirect()->route('users.create')->with('success', 'Utilisateur créé avec succès.');
     }
 
     /**
