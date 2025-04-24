@@ -21,3 +21,10 @@ th.resizable .resizer {
     cursor: col-resize;
     user-select: none;
 }
+
+
+input[type="radio"]:checked + label{
+    background-color: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}

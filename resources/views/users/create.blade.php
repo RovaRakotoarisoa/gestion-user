@@ -18,18 +18,25 @@
 				</div>
 			</div>
 			<div class="flex gap-4 mt-6">
-				<div class="flex">
-					<x-input name="role" type="radio" value="Admin"/>
-					<x-label value="Admin"/>	
+				<div>
+					{{-- <x-input name="role" type="radio" value="Admin" class="hidden peer/admin"/> --}}
+					<input type="radio" name="role" value="Admin" class="hidden">
+					<label for="admin" class="px-6 py-2 border border-gray-300 rounded-lg cursor-pointer text-gray-700 transition">
+						Admin
+					</label>
 				</div>
-				<div class="flex">
-					<x-input name="role" type="radio" value="User"/>
-					<x-label value="User"/>	
+				<div>
+					<input name="role" type="radio" value="User" class="hidden"/>
+					<label for="user" class="px-6 py-2 border border-gray-300 rounded-lg cursor-pointer text-gray-700">
+						User
+					</label>
 				</div>
 			</div>
 			<div>
 				<x-input name="avatar" type="file" />
 			</div>
+
+
 
 			<x-button>Creer</x-button>
 		</form>
