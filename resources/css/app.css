@@ -23,8 +23,7 @@ th.resizable .resizer {
 }
 
 
-input[type="radio"]:checked + label{
-    background-color: #2563eb;
-    color: white;
-    border-color: #2563eb;
+/*Design radio*/
+input[type="radio"]:checked + span {
+  display: block;
 }
