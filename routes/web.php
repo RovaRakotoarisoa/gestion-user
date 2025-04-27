@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::redirect('/dashboard', '/home');
+Route::redirect('/dashboard', 'home');
 
 Route::middleware([
     'auth:sanctum',
@@ -19,6 +19,6 @@ Route::middleware([
     })->name('home');
 });
 
-Route::get('/home', [UserController::class,'index']);
+Route::get('/home', [UserController::class,'index'])->name('home');
 
 Route::resource('users', UserController::class);

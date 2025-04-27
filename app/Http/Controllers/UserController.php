@@ -55,7 +55,7 @@ class UserController extends Controller
         ]);
 
         //redirect
-        return redirect()->route('users.create')->with('success', 'Utilisateur créé avec succès.');
+        return redirect()->route('home')->with('success', 'Utilisateur créé avec succès.');
     }
 
     /**
