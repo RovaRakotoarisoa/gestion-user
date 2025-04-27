@@ -28,6 +28,9 @@
                             <x-table-head-column>
                                 Role
                             </x-table-head-column>
+                            <x-table-head-column>
+                                Action
+                            </x-table-head-column>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
@@ -47,6 +50,17 @@
                                     {{ $user->email }}
                                 </td>
                                 <td class="px-4 py-3 text-sm text-gray-500 capitalize">{{ $user->role }}</td>
+                                <td class="border px-4 py-2">
+                                    <a href="{{ route('users.show', $user->id) }}" class="text-blue-500">Voir</a>
+                                    <a href="{{ route('users.edit', $user->id) }}" class="text-green-500 ml-2">Modifier</a>
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 ml-2">Supprimer</button>
+                                    </form>
+                                </td>
+                            </form>
+                        </td>
                             </tr>
                         @endforeach
                     </tbody>
