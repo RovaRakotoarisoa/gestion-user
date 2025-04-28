@@ -30,7 +30,7 @@
 		          <span class="font-semibold text-gray-500 leading-tight uppercase">Admin</span>
 		          <input type="radio" name="role" id="admin" value="Admin" class="absolute h-0 w-0 appearance-none hidden" />
 
-		            <span aria-hidden="false" class="absolute inset-0 border-2 border-green-500 bg-green-200 bg-opacity-10 rounded-lg">
+		            <span aria-hidden="false" class="inset-0 border-2 {{$user->role === 'Admin' ? 'absolute' : 'hidden'}} border-green-500 bg-green-200 bg-opacity-10 rounded-lg">
 						<span class="absolute top-1 right-1 h-6 w-6 inline-flex items-center justify-center rounded-full bg-green-200">
 						  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 text-green-600">
 						    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -42,7 +42,7 @@
 			    <label for="user" class="relative flex flex-col bg-white px-12 py-4 rounded-lg shadow-md cursor-pointer">
 		          <span class="font-semibold text-gray-500 leading-tight uppercase">User</span>
 		          <input type="radio" name="role" id="user" value="User" class="absolute h-0 w-0 appearance-none hidden" />
-					<span aria-hidden="false" class="absolute inset-0 border-2 border-green-500 bg-green-200 bg-opacity-10 rounded-lg">
+					<span aria-hidden="false" class="absolute inset-0 border-2 {{$user->role === 'User' ? 'absolute' : 'hidden'}} border-green-500 bg-green-200 bg-opacity-10 rounded-lg">
 						<span class="absolute top-1 right-1 h-6 w-6 inline-flex items-center justify-center rounded-full bg-green-200">
 						  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 text-green-600">
 						    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />

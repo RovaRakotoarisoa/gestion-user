@@ -40,7 +40,9 @@
 						<svg aria-hidden="true" class="w-8 h-8 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0l-4 4m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"></path>
 						</svg>
-						<p class="mb-2 text-sm text-gray-500 text-justify"><span class="font-semibold">Cliquez pour uploader</span> ou glissez une image</p>
+						<p class="mb-2 text-sm text-gray-500 text-justify">
+							<span class="font-semibold">Cliquez pour uploader</span> ou glissez une image
+						</p>
 						<p class="text-xs text-gray-500">PNG, JPG, JPEG (Max MB)</p>
 					</div>
 
