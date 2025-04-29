@@ -80,7 +80,30 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'required|confirmed|min:6',
+            'role' => 'required',
+            'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $profilePhotoPath = $user->profile_photo_path;
+        if ($request->hasFile('avatar')) {
+            $profilePhotoPath = $request->file('avatar')->store('avatars', 'public');
+        }
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'role' => $request->role,
+            'profile_photo_path' => $profilePhotoPath,
+        ]);
+
+        return redirect()->route('home')->with('success', 'Utilisateur mis à jour avec succès!');
     }
 
     /**
