@@ -80,10 +80,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+        //validate
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'required|confirmed|min:6',
+            'password' => 'nullable|confirmed|min:6',
             'role' => 'required',
             'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -95,14 +97,22 @@ class UserController extends Controller
             $profilePhotoPath = $request->file('avatar')->store('avatars', 'public');
         }
 
-        $user->update([
+        $updateData = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
             'role' => $request->role,
             'profile_photo_path' => $profilePhotoPath,
-        ]);
+        ];
 
+        if(!empty($request->password)){
+            $updateData['password'] = Hash::make($request->password);
+        }
+
+
+        //update
+        $user->update($updateData);
+
+        //redirect
         return redirect()->route('home')->with('success', 'Utilisateur mis à jour avec succès!');
     }
 

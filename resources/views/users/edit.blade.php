@@ -14,7 +14,7 @@
 				</div>
 				<div>
 					<x-label value="Mot de passe :" class="pb-3"/>
-					<x-input name="password" type="text" value="{{ $user->password }}"class="w-full pb-3"/>
+					<x-input name="password" type="text" placeholder="Laisser vide si inchanger..." class="w-full pb-3"/>
 				</div>
 				<div>
 					<x-label value="Confirmer le mot de passe :" class="pb-3"/>
