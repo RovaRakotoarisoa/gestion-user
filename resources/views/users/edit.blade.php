@@ -57,18 +57,18 @@
 				</label>
 			</div>
 
-			
-				<div>
-					@if($errors->any())
-						<ul class="text-red-500 text-sm">
-							@foreach($errors->all() as $error)
-								<li>{{$error}}</li>
-							@endforeach
-						</ul>
-					@endif
-				</div>
+			<div>
+				@if($errors->any())
+					<ul class="text-red-500 text-sm">
+						@foreach($errors->all() as $error)
+							<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				@endif
+			</div>
 
 			<x-button class="mt-4">Modifier</x-button>
+
 		</form>
 	</x-container>
 	
@@ -82,4 +82,3 @@
     }
 </script>
 </x-layout>
-

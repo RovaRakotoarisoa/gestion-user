@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -19,6 +20,8 @@ Route::middleware([
     })->name('home');
 });
 
-Route::get('/home', [UserController::class,'index'])->name('home');
+Route::get('/home', [UserController::class,'index'])->name('home')->middleware('auth');
 
-Route::resource('users', UserController::class);
+Route::resource('users', UserController::class)->middleware('auth');
+
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');

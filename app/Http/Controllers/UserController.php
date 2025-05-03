@@ -78,7 +78,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
 
         //validate
@@ -119,8 +119,9 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        User::findOrFail($id)->delete();
+        return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès!');
     }
 }
