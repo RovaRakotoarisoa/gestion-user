@@ -13,13 +13,11 @@
         </li>
         <li class="mb-2 flex gap-3 text-white">
             <img src="{{ Vite::asset('resources/images/laravel-2.svg') }}" width="20px" alt="image user">                
-                Name User
+                {{ Auth::user()->name }}
         </li>
         <li class="mb-2 flex gap-3 text-white">
-            <form method="POST" action="/">
+            <form method="POST" action="{{route('logout')}}">
                 @csrf
-                @method('DELETE')
-
                 <button>
                     <span class="flex">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

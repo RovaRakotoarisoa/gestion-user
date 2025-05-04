@@ -24,4 +24,4 @@ Route::get('/home', [UserController::class,'index'])->name('home')->middleware('
 
 Route::resource('users', UserController::class)->middleware('auth');
 
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
