@@ -14,11 +14,7 @@
                     <thead class="bg-gray-100">
                         <tr>
                             <x-table-head-column>
-                                Avatar
-                            </x-table-head-column>
-
-                            <x-table-head-column>
-                                Nom
+                                User
                             </x-table-head-column>
 
                             <x-table-head-column>
@@ -35,32 +31,42 @@
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                         @foreach($users as $user)
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="px-4 py-3">
-                                    @if ($user->profile_photo_path)
-                                        <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Avatar" class="w-10 h-10 rounded-full">
-                                    @else
-                                        Pas d'avatar
-                                    @endif
-                                </td>
-                                <td class="px-4 py-3 text-sm text-gray-800 truncate" title="{{ $user->name }}">
-                                    {{ $user->name }}
+                            <tr class="hover:bg-gray-50 hover:shadow-md transition">
+                                <td class="px-4 py-3 flex  items-center gap-4">
+                                    <span>
+                                        @if ($user->profile_photo_path)
+                                            <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Avatar" class="w-10 h-10 rounded-full">
+                                        @else
+                                            <img src="{{ Vite::asset('resources/images/user-circle.svg') }}" alt="default img user" class="w-10 h-10 drop-shadow-xl">
+                                        @endif
+                                    </span>
+                                    <span class="text-sm text-gray-800 truncate">
+                                        {{ $user->name }}
+                                    </span>
                                 </td>
                                 <td class="px-4 py-3 text-sm text-gray-600 truncate" title="{{ $user->email }}">
                                     {{ $user->email }}
                                 </td>
-                                <td class="px-4 py-3 text-sm text-gray-500 capitalize">{{ $user->role }}</td>
-                                <td class="border px-4 py-2">
-                                    <a href="{{ route('users.show', $user->id) }}" class="text-blue-500">Voir</a>
-                                    <a href="{{ route('users.edit', $user->id) }}" class="text-green-500 ml-2">Modifier</a>
+                                <td class="py-3 text-sm text-gray-500 capitalize">
+                                    @if( $user->role === 'User')
+                                        <span class="bg-yellow-300 rounded-lg p-1 text-white">{{ $user->role }}</span>
+                                    @else
+                                        <span class="bg-purple-300 rounded-lg p-1 text-white">{{ $user->role }}</span>
+                                    @endif
+                                </td>
+                                <td class="pl-0 pr-4 py-4 flex items-center justify-end gap-4">
+                                    {{-- <a href="{{ route('users.show', $user->id) }}" class="text-blue-500">Voir</a> --}}
+                                    <a href="{{ route('users.edit', $user->id) }}" class="text-green-500 ml-2">
+                                        <img src="{{ Vite::asset('resources/images/pencil.svg') }}" width="20px" alt="modify icon" class="drop-shadow-xl">
+                                    </a>
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-500 ml-2">Supprimer</button>
+                                        <button type="submit" class="text-red-500 ml-2">
+                                            <img src="{{ Vite::asset('resources/images/trash.svg') }}" width="20px" alt="delete icon" class="drop-shadow-xl">
+                                        </button>
                                     </form>
                                 </td>
-                            </form>
-                        </td>
                             </tr>
                         @endforeach
                     </tbody>
