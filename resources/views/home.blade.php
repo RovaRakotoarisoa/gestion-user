@@ -5,15 +5,15 @@
 
             <div class="overflow-x-auto">
                
-                    <a href="{{ route('users.create') }}"> 
-                        <x-secondary-button class="w-100 rounded text-white py-2 float-right mb-4">
-                            Ajouter un utilisateur
-                        </x-secondary-button>
-                    </a>
+                <a href="{{ route('users.create') }}"> 
+                    <x-secondary-button class="w-100 rounded text-white py-2 float-right mb-4">
+                        Ajouter un utilisateur
+                    </x-secondary-button>
+                </a>
                 <table class="min-w-full table-fixed border-collapse">
-                    <thead class="bg-gray-100">
+                    <thead class="bg-blue-300 shadow-lg">
                         <tr>
-                            <x-table-head-column>
+                            <x-table-head-column class="!w-10">
                                 User
                             </x-table-head-column>
 
@@ -21,10 +21,10 @@
                                 Email
                             </x-table-head-column>
 
-                            <x-table-head-column>
+                            <x-table-head-column class="!w-8">
                                 Role
                             </x-table-head-column>
-                            <x-table-head-column>
+                            <x-table-head-column class="!w-2">
                                 Action
                             </x-table-head-column>
                         </tr>
@@ -57,13 +57,13 @@
                                 <td class="pl-0 pr-4 py-4 flex items-center justify-end gap-4">
                                     {{-- <a href="{{ route('users.show', $user->id) }}" class="text-blue-500">Voir</a> --}}
                                     <a href="{{ route('users.edit', $user->id) }}" class="text-green-500 ml-2">
-                                        <img src="{{ Vite::asset('resources/images/pencil.svg') }}" width="20px" alt="modify icon" class="drop-shadow-xl">
+                                        <img src="{{ Vite::asset('resources/images/pencil.svg') }}" width="25px" alt="modify icon" class="drop-shadow-xl">
                                     </a>
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-500 ml-2">
-                                            <img src="{{ Vite::asset('resources/images/trash.svg') }}" width="20px" alt="delete icon" class="drop-shadow-xl">
+                                            <img src="{{ Vite::asset('resources/images/trash.svg') }}" width="25px" alt="delete icon" class="drop-shadow-xl">
                                         </button>
                                     </form>
                                 </td>

@@ -13,7 +13,7 @@
         </li>
         <li class="mb-2 flex gap-3 text-white">
             <img src="{{ Vite::asset('resources/images/user-circle.svg') }}" class="w-6 h-6" alt="image user">                
-                {{ Auth::user()->name }}
+            <span class="first-letter:uppercase">{{ Auth::user()->name }}</span>
         </li>
         <li class="mb-2 flex gap-3 text-white">
             <form method="POST" action="{{route('logout')}}">
