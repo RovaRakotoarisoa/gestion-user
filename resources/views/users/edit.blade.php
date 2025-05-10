@@ -30,6 +30,8 @@
 					<x-label value="Email :" class="pb-3"/>
 					<x-input name="email" type="email" class="w-full pb-3"  value="{{ $user->email }}"/>
 				</div>
+
+				{{-- A AJOUTER  AVEC ALPINE JS UN BOUTTON CHANGER MDP POUR AFFICHER CES BALISE SUR MDP--}}
 				<div>
 					<x-label value="Mot de passe :" class="pb-3"/>
 					<x-input name="password" type="text" placeholder="Laisser vide si inchanger..." class="w-full pb-3"/>
@@ -38,6 +40,7 @@
 					<x-label value="Confirmer le mot de passe :" class="pb-3"/>
 					<x-input name="password_confirmation" type="text" class="w-full pb-3"/>
 				</div>
+
 			</div>
 
 			<div class="flex gap-4 my-6">				
