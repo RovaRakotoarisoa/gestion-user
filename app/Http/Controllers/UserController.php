@@ -124,4 +124,26 @@ class UserController extends Controller
         User::findOrFail($id)->delete();
         return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès!');
     }
+
+    /**
+     * Delete all user selected.
+     */
+    public function bulkDelete(Request $request)
+    {
+
+        if (!$request->has('user_ids') || empty($request->user_ids)) {
+            return redirect()->back()->with('error', 'Aucun utilisateurs selectionne.');
+        }
+
+        try {
+            $userTest = User::whereIn('id', $request->user_ids)->get()->delete();
+
+            return redirect()->route('home')->with('success', 'Utilisateurs supprimé avec succès.');
+        } catch(\Exception $e){
+            return redirect()->route('home')->with('error', 'Erreur lors de la suppression.');
+        }
+    }
+
+
+
 }
