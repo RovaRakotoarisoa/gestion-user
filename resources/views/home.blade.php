@@ -14,27 +14,28 @@
                 <form action="{{ route('users.bulkDelete') }}" method="POST">
                     @csrf
                     @method('DELETE')
+                    
 
                     <table class="min-w-full table-fixed border-collapse">
                         <thead class="bg-blue-300 shadow-lg">
                             <tr>
-                                <x-table-head-column>
-                                    Bulk
+                                <x-table-head-column class="!w-[5px]">
+                                    
                                 </x-table-head-column>
 
-                                <x-table-head-column class="!w-10">
+                                <x-table-head-column class="!w-[0.5rem]">
                                     User
                                 </x-table-head-column>
 
-                                <x-table-head-column>
+                                <x-table-head-column class="!w-[2rem]">
                                     Email
                                 </x-table-head-column>
 
-                                <x-table-head-column class="!w-8">
+                                <x-table-head-column class="!w-[5px]">
                                     Role
                                 </x-table-head-column>
 
-                                <x-table-head-column class="!w-2">
+                                <x-table-head-column class="!w-[20px]">
                                     Action
                                 </x-table-head-column>
                             </tr>
@@ -42,10 +43,10 @@
                         <tbody class="divide-y divide-gray-200">
                             @foreach($users as $user)
                                 <tr class="hover:bg-gray-50 hover:shadow-md transition">
-                                    <td class="px-4 py-3">
-                                        <input type="checkbox" name="user_ids[]" value="{{ $user->id }}" class="rounded border border-blue-600/20 text-purple-300">
+                                    <td class="px-1 py-3">
+                                        <input type="checkbox" name="user_ids[]" value="{{ $user->id }}" class="rounded border border-blue-600/20 text-purple-300 shadow-lg">
                                     </td>
-                                    <td class="px-4 py-3 flex  items-center gap-4">
+                                    <td class="py-3 flex items-center gap-4">
                                         <span class="drop-shadow-xl">
                                             @if ($user->profile_photo_path)
                                                 <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Avatar" class="w-10 h-10 rounded-full">
@@ -87,7 +88,7 @@
                         </tbody>
                     </table>
 
-                    <x-button class="">Supprimer la selection</x-button>
+                    <x-button class="bg-red-600 hover:bg-red-400 transition">Supprimer la selection</x-button>
                 </form>
             </div>
         </div>

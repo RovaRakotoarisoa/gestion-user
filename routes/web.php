@@ -26,4 +26,4 @@ Route::resource('users', UserController::class)->middleware('auth');
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
 
-Route::delete('/home', [UserController::class,'bulkDelete'])->name('users.bulkDelete');
+Route::delete('/home', [UserController::class,'bulkDelete'])->name('users.bulkDelete')->middleware('auth');
