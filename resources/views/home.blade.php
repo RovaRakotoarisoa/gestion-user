@@ -11,7 +11,14 @@
                     </x-secondary-button>
                 </a>
 
-                <form action="{{ route('users.bulkDelete') }}" method="POST">
+                {{-- A revoir --}}
+                {{-- <x-action-message on="testMessage">
+                    Operation reussi
+                </x-action-message> --}}
+               
+
+               <x-button form="bulkDelete" class="bg-red-600 hover:bg-red-400 transition">Supprimer la selection</x-button>
+                <form id="bulkDelete" action="{{ route('users.bulkDelete') }}" method="POST">
                     @csrf
                     @method('DELETE')
                     
@@ -87,8 +94,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
-                    <x-button class="bg-red-600 hover:bg-red-400 transition">Supprimer la selection</x-button>
                 </form>
             </div>
         </div>

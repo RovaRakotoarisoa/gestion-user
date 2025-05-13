@@ -55,7 +55,7 @@ class UserController extends Controller
         ]);
 
         //redirect
-        return redirect()->route('home')->with('success', 'Utilisateur créé avec succès.');
+        return redirect()->route('home')->with('success', 'Utilisateur');
     }
 
     /**
@@ -131,6 +131,7 @@ class UserController extends Controller
     public function bulkDelete(Request $request)
     {
         $userIds = $request->input('user_ids',[]);
+        
         if(empty($userIds)){
             return redirect()->back()->delete()->with('error','une erreur');
         }
