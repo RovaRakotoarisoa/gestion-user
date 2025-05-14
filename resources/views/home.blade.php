@@ -17,7 +17,8 @@
                 </x-action-message> --}}
                
 
-               <x-button form="bulkDelete" class="bg-red-600 hover:bg-red-400 transition">Supprimer la selection</x-button>
+               <x-button form="bulkDelete" class="bg-red-500 hover:bg-red-400 transition">Supprimer la selection</x-button>
+
                 <form id="bulkDelete" action="{{ route('users.bulkDelete') }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -95,6 +96,9 @@
                         </tbody>
                     </table>
                 </form>
+                <div>
+                    {{ $users->links()}}
+                </div>
             </div>
         </div>
     @vite(['resources/js/resizerTable.js'])
