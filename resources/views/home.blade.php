@@ -80,16 +80,19 @@
                                     </td>
                                     <td class="pl-0 pr-4 py-4 flex items-center justify-end gap-4">
                                         {{-- <a href="{{ route('users.show', $user->id) }}" class="text-blue-500">Voir</a> --}}
-                                        <a href="{{ route('users.edit', $user->id) }}" class="text-green-500 ml-2">
-                                            <img src="{{ Vite::asset('resources/images/pencil.svg') }}" width="25px" alt="modify icon" class="drop-shadow-xl">
-                                        </a>
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-red-500 ml-2">
-                                                <img src="{{ Vite::asset('resources/images/trash.svg') }}" width="25px" alt="delete icon" class="drop-shadow-xl">
-                                            </button>
-                                        </form>
+                                        @can('can-crud')
+                                            <a href="{{ route('users.edit', $user->id) }}" class="text-green-500 ml-2">
+                                                <img src="{{ Vite::asset('resources/images/pencil-square.svg') }}" width="25px" alt="modify icon" class="drop-shadow-xl">
+                                            </a>
+            
+                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-500 ml-2">
+                                                    <img src="{{ Vite::asset('resources/images/trash.svg') }}" width="25px" alt="delete icon" class="drop-shadow-xl">
+                                                </button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

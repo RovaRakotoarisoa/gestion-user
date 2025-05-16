@@ -133,7 +133,7 @@ class UserController extends Controller
         $userIds = $request->input('user_ids',[]);
         
         if(empty($userIds)){
-            return redirect()->back()->delete()->with('error','une erreur');
+            return redirect()->back();//->delete()->with('error','une erreur')
         }
 
         try{
