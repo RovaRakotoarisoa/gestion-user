@@ -4,20 +4,21 @@
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Liste des utilisateurs</h2>
 
             <div class="overflow-x-auto">
-               
-                <a href="{{ route('users.create') }}"> 
-                    <x-secondary-button class="w-100 rounded text-white py-2 float-right mb-4">
-                        Ajouter un utilisateur
-                    </x-secondary-button>
-                </a>
+               @can('can-crud')
+                    <a href="{{ route('users.create') }}"> 
+                        <x-secondary-button class="w-100 rounded text-white py-2 float-right mb-4">
+                            Ajouter un utilisateur
+                        </x-secondary-button>
+                    </a>
+                @endcan
 
                 {{-- A revoir --}}
                 {{-- <x-action-message on="testMessage">
                     Operation reussi
                 </x-action-message> --}}
-               
-
-               <x-button form="bulkDelete" class="bg-red-500 hover:bg-red-400 transition">Supprimer la selection</x-button>
+                @can('can-crud')
+                    <x-button form="bulkDelete" class="bg-red-500 hover:bg-red-400 transition">Supprimer la selection</x-button>
+                @endcan
 
                 <form id="bulkDelete" action="{{ route('users.bulkDelete') }}" method="POST">
                     @csrf
@@ -42,7 +43,7 @@
                                 <x-table-head-column class="!w-[5px]">
                                     Role
                                 </x-table-head-column>
-
+                                
                                 <x-table-head-column class="!w-[20px]">
                                     Action
                                 </x-table-head-column>
@@ -64,7 +65,7 @@
                                                 </svg>
                                             @endif
                                         </span>
-                                        <span class="text-sm text-gray-800 truncate">
+                                        <span class="text-sm text-gray-800 truncate first-letter:uppercase">
                                             {{ $user->name }}
                                         </span>
                                     </td>
@@ -80,6 +81,7 @@
                                     </td>
                                     <td class="pl-0 pr-4 py-4 flex items-center justify-end gap-4">
                                         {{-- <a href="{{ route('users.show', $user->id) }}" class="text-blue-500">Voir</a> --}}
+
                                         @can('can-crud')
                                             <a href="{{ route('users.edit', $user->id) }}" class="text-green-500 ml-2">
                                                 <img src="{{ Vite::asset('resources/images/pencil-square.svg') }}" width="25px" alt="modify icon" class="drop-shadow-xl">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\User;
 
@@ -24,6 +25,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        //Authorizattion
+        Gate::authorize('can-crud');
+
         return view('users.create');  
     }
 
@@ -32,6 +36,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //Authorizattion
+        Gate::authorize('can-crud');
+
         //validate
         $request-> validate([ 
             'name' => 'required|string|max:255',
@@ -71,6 +78,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        //Authorizattion
+        Gate::authorize('can-crud');
+
         $user = User::findOrFail($id);
         return view('users.edit', compact('user'));
     }
@@ -80,6 +90,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Authorizattion
+        Gate::authorize('can-crud');
 
         //validate
         $request->validate([
@@ -121,6 +133,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        //Authorizattion
+        Gate::authorize('can-crud');
+
         User::findOrFail($id)->delete();
         return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès!');
     }
@@ -130,6 +145,9 @@ class UserController extends Controller
      */
     public function bulkDelete(Request $request)
     {
+        //Authorizattion
+        Gate::authorize('can-crud');
+        
         $userIds = $request->input('user_ids',[]);
         
         if(empty($userIds)){
