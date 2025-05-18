@@ -3,6 +3,27 @@
         <div class="bg-white shadow-md rounded-2xl p-6">
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Liste des utilisateurs</h2>
 
+
+            <section class="call-to-action flex justify-between items-center">
+                <div class="flex justify-between items-center">
+                    <x-button>List</x-button>
+                    <input type="search" name="search">
+                </div>
+                <div class="flex justify-between items-center gap-4">
+                    <div class="filter">
+                        <x-button>Filter</x-button>
+                    </div>
+                    <div class="add">
+                        @can('can-crud')
+                            <a href="{{ route('users.create') }}"> 
+                                <x-secondary-button class="w-100 rounded text-white py-2 float-right mb-4">
+                                    Ajouter un utilisateur
+                                </x-secondary-button>
+                            </a>
+                        @endcan
+                    </div>
+                </div>
+            </section>
             <div class="overflow-x-auto">
                @can('can-crud')
                     <a href="{{ route('users.create') }}"> 
