@@ -7,7 +7,8 @@
             <section class="call-to-action flex justify-between items-center">
                 <div class="flex justify-between items-center">
                     <x-button>List</x-button>
-                    <input type="search" name="search">
+                    {{-- <input type="search" name="search"> --}}
+                    <livewire:user-search />
                 </div>
                 <div class="flex justify-between items-center gap-4">
                     <div class="filter">
