@@ -7,8 +7,9 @@
             <section class="call-to-action flex justify-between items-center">
                 <div class="flex justify-between items-center">
                     <x-button>List</x-button>
-                    {{-- <input type="search" name="search"> --}}
-                    <livewire:user-search />
+
+                    <livewire:search-bar>
+                        
                 </div>
                 <div class="flex justify-between items-center gap-4">
                     <div class="filter">
@@ -129,5 +130,7 @@
             </div>
         </div>
     @vite(['resources/js/resizerTable.js'])
+    @livewireScripts
+
     </x-container>
 </x-layout>
