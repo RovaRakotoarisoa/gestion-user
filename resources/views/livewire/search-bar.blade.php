@@ -5,7 +5,7 @@
     </form>
 
     @if(sizeof($users) > 0)
-    <div>
+    <div class="absolute bg-white">
         @foreach($users as $user)
             <p>{{ $user->name }}</p>
             <small>{{ $user->email }}</small>
