@@ -4,7 +4,7 @@
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Liste des utilisateurs</h2>
 
 
-            <section class="call-to-action flex justify-between items-center">
+            {{-- <section class="call-to-action flex justify-between items-center">
                 <div class="flex justify-between items-center">
                     <x-button>List</x-button>
 
@@ -25,22 +25,15 @@
                         @endcan
                     </div>
                 </div>
-            </section>
+            </section> --}}
             <div class="overflow-x-auto">
-               @can('can-crud')
-                    <a href="{{ route('users.create') }}"> 
-                        <x-secondary-button class="w-100 rounded text-white py-2 float-right mb-4">
-                            Ajouter un utilisateur
-                        </x-secondary-button>
-                    </a>
-                @endcan
 
                 {{-- A revoir --}}
                 {{-- <x-action-message on="testMessage">
                     Operation reussi
                 </x-action-message> --}}
                 @can('can-crud')
-                    <x-button form="bulkDelete" class="bg-red-500 hover:bg-red-400 transition">Supprimer la selection</x-button>
+                    <x-button form="bulkDelete" class="space-y-6 bg-red-500 hover:bg-red-400 transition">Supprimer la selection</x-button>
                 @endcan
 
                 <form id="bulkDelete" action="{{ route('users.bulkDelete') }}" method="POST">
@@ -48,7 +41,7 @@
                     @method('DELETE')
                     
 
-                    <table class="min-w-full table-fixed border-collapse">
+                    {{-- <table class="min-w-full table-fixed border-collapse">
                         <thead class="bg-blue-300 shadow-lg">
                             <tr>
                                 <x-table-head-column class="!w-[5px]">
@@ -103,8 +96,6 @@
                                         @endif
                                     </td>
                                     <td class="pl-0 pr-4 py-4 flex items-center justify-end gap-4">
-                                        {{-- <a href="{{ route('users.show', $user->id) }}" class="text-blue-500">Voir</a> --}}
-
                                         @can('can-crud')
                                             <a href="{{ route('users.edit', $user->id) }}" class="text-green-500 ml-2">
                                                 <img src="{{ Vite::asset('resources/images/pencil-square.svg') }}" width="25px" alt="modify icon" class="drop-shadow-xl">
@@ -122,15 +113,16 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
+                    </table> --}}
+
+                    <livewire:user-table />
                 </form>
-                <div>
+               {{--  <div>
                     {{ $users->links()}}
-                </div>
+                </div> --}}
             </div>
         </div>
     @vite(['resources/js/resizerTable.js'])
-    @livewireScripts
 
     </x-container>
 </x-layout>
