@@ -15,6 +15,21 @@ class UserTable extends Component
     public $search = '';
     public $is_admin = '';
 
+    public $sortBy = 'created_at';
+    public $sortDir = 'DESC';
+
+    public function setSortBy($sortByField){
+        if ($this->sortBy === $sortByField) {
+            
+            $this->sortDir = ($this->sortDir == 'ASC') ? 'DESC' : 'ASC';
+            
+            return;
+        }
+
+        $this->sortBy = $sortByField;
+        $this->sortDir = 'DESC';
+    }
+
     public function render()
     {
         return view('livewire.user-table',
@@ -23,6 +38,7 @@ class UserTable extends Component
                 ->when($this->is_admin !== '', function($query){
                     $query->where('role', $this->is_admin);
                 })
+                ->orderBy($this->sortBy, $this->sortDir)
                 ->paginate($this->perpage)
             ]
         );
