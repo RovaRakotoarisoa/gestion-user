@@ -34,13 +34,14 @@
                 {{-- <x-action-message on="testMessage">
                     Operation reussi
                 </x-action-message> --}}
-                @can('can-crud')
+                
+                {{-- @can('can-crud')
                     <x-button form="bulkDelete" class="space-y-6 bg-red-500 hover:bg-red-400 transition">Supprimer la selection</x-button>
-                @endcan
+                @endcan --}}
 
-                <form id="bulkDelete" action="{{ route('users.bulkDelete') }}" method="POST">
+                {{-- <form id="bulkDelete" action="{{ route('users.bulkDelete') }}" method="POST">
                     @csrf
-                    @method('DELETE')
+                    @method('DELETE') --}}
                     
 
                     {{-- <table class="min-w-full table-fixed border-collapse">
@@ -118,7 +119,7 @@
                     </table> --}}
 
                     <livewire:user-table />
-                </form>
+                {{-- </form> --}}
                {{--  <div>
                     {{ $users->links()}}
                 </div> --}}
