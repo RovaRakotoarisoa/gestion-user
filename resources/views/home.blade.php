@@ -1,9 +1,9 @@
 <x-layout>
     <x-container>
         <div class="bg-gray-100 p-6 space-y-6">
-            <div class="bg-white shadow-md rounded-2xl p-4">
+            {{-- <div class="bg-white shadow-md rounded-2xl p-4">
                 <h2 class="text-2xl font-bold text-gray-300 font-extrabold">Liste des utilisateurs</h2>
-            </div>
+            </div> --}}
 
 
             {{-- <section class="call-to-action flex justify-between items-center">

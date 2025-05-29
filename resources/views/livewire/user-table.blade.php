@@ -26,12 +26,20 @@
         </div> --}}
         
         <div class="flex justify-between items-center gap-4">
-            <x-button>Filter</x-button>
+            <x-button class="flex justify-center font-bold !text-gray-600 !bg-[#f9fafb] !border !border-gray-300 !py-[10px]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="w-4 h-4 gap-1">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z"/>
+                </svg>
+                Filter
+            </x-button>
             <div class="flex justify-center items-center">
                 @can('can-crud')
                     <a href="{{ route('users.create') }}"> 
-                        <x-secondary-button class="w-100 rounded text-white py-2 float-right">
-                            Ajouter un utilisateur
+                        <x-secondary-button class="w-100 rounded text-white py-2 float-right !bg-purple-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="w-5 h-5 gap-1">
+                              <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"/>
+                            </svg>
+                            Ajouter Utilisateur
                         </x-secondary-button>
                     </a>
                 @endcan
@@ -74,7 +82,7 @@
                         Role
                     </x-table-head-column>
                     
-                    <x-table-head-column class="!w-[20px]">
+                    <x-table-head-column class="!w-[20px] text-right pr-6">
                         Action
                     </x-table-head-column>
                 </tr>
@@ -131,7 +139,7 @@
         <div class="p-6 bg-white">
             <div class="flex">
                 <div class="flex items-center mb-3">
-                    <label class="text-sm font-medium text-gray-900">Perpage: </label>
+                    <label class="text-sm font-medium text-gray-600">Perpage: </label>
                     <select 
                         wire:model.live='perpage'
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-100">
