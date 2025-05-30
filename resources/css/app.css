@@ -27,3 +27,35 @@ th.resizable .resizer {
 input[type="radio"]:checked + span {
   display: block;
 }
+
+
+/*Display none the Total numer user On PAGINATION */
+#user-table > div:nth-child(2) > div > div:nth-child(2) > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(1) {
+    display: none;
+}
+
+#user-table > div:nth-child(2) > div > div:nth-child(2) > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between {
+    justify-content: center;
+}
+
+#user-table > div:nth-child(2) > div > div:nth-child(2) > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(2) > span > span > button {
+    background: none;
+    border-color: #d1d5db;
+}
+
+#user-table > div:nth-child(2) > div > div:nth-child(2) > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(2) > span > span:nth-child(2) > span[aria-current="page"] > span {
+    background: none;
+}
+[aria-current="page"] > span {
+    background: #d1d5db;
+    border-color: #d1d5db;
+}
+span.relative.inline-flex.items-center.px-2.py-2.text-sm.font-medium.text-gray-500.bg-white.border.border-gray-300.cursor-default.rounded-l-md.leading-5.dark\:bg-gray-800.dark\:border-gray-600 {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+#user-table > div:nth-child(2) > div > div:nth-child(2) > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(2) > span > span:nth-child(6) > span > span {
+    background: none;
+    border-color: #d1d5db;
+}
