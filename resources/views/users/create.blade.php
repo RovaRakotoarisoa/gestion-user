@@ -3,13 +3,13 @@
 		<form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
 			@csrf
 			@method('POST')
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center bg-white">
 	      <div class="my-12">
 	        <h2 class="text-xl font-semibold text-gray-700 mb-4 text-center">Photo de profil</h2>
 
 	        <div class="relative w-32 h-32 mx-auto">
 	          <img id="preview" src="https://via.placeholder.com/150"
-	               class="h-32 object-cover rounded-full border-4 border-white shadow-2xl" />
+	               class="h-32 object-cover rounded-full bg-gray-50 border-4 border-white shadow-2xl" />
 	          <label for="avatar"
 	                 class="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow hover:bg-gray-100 cursor-pointer transition">
 	            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,32 +25,32 @@
 				<div class="space-y-6 flex flex-col items-center justify-center">
 					<div>
 						<x-label value="Name :" class="pb-3"/>
-						<x-input name="name" type="text" class="w-[34rem] pb-3" placeholder="Enter name here..." />
+						<x-input name="name" type="text" class="w-[34rem] !bg-[#f9fafb] pb-3" placeholder="Enter name here..." />
 					</div>
 					<div>
 						<x-label value="Email :" class="pb-3"/>
-						<x-input name="email" type="email" class="w-[34rem] pb-3" placeholder="Example@gmail.com" />
+						<x-input name="email" type="email" class="w-[34rem] !bg-[#f9fafb] pb-3" placeholder="Example@gmail.com" />
 					</div>
 					<div>
 						<x-label value="Mot de passe :" class="pb-3"/>
-						<x-input name="password" type="password" class="w-[34rem] pb-3" />
+						<x-input name="password" type="password" class="w-[34rem] !bg-[#f9fafb] pb-3" />
 					</div>
 					<div>
 						<x-label value="Confirmer le mot de passe :" class="pb-3"/>
-						<x-input name="password_confirmation" type="password" class="w-[34rem] pb-3"/>
+						<x-input name="password_confirmation" type="password" class="w-[34rem] !bg-[#f9fafb] pb-3"/>
 					</div>
 				</div>
 
 				<div class="flex justify-center gap-4 my-6">
-					<label for="admin" class="relative flex flex-col bg-white px-12 pt-4 rounded-lg shadow-md cursor-pointer">
-			          <span class="font-semibold text-gray-500 leading-tight uppercase">Admin</span>
+					<label for="admin" class="relative flex flex-col bg-white px-12 pt-4 rounded-lg border border-gray-300 cursor-pointer">
+			          <span class="font-semibold text-gray-500 leading-tight">Admin</span>
 			          <input type="radio" name="role" id="admin" value="Admin" class="absolute h-0 w-0 appearance-none hidden" />
 
 			          <x-is-checked />
 				    </label>
 
-				    <label for="user" class="relative flex flex-col bg-white px-12 py-4 rounded-lg shadow-md cursor-pointer">
-			          <span class="font-semibold text-gray-500 leading-tight uppercase">User</span>
+				    <label for="user" class="relative flex flex-col bg-white px-12 py-4 rounded-lg border border-gray-300 cursor-pointer">
+			          <span class="font-semibold text-gray-500 leading-tight">User</span>
 			          <input type="radio" name="role" id="user" value="User" class="absolute h-0 w-0 appearance-none hidden" />
 
 			          <x-is-checked />
@@ -65,12 +65,10 @@
 						</ul>
 					@endif
 				</div>
-				<x-button class="mt-4 rounded text-white py-2 !bg-purple-300 w-[34rem] flex justify-center">Ajouter</x-button>
+				<x-button class="my-4 rounded text-white !text-sm py-2 !bg-purple-300 w-[34rem] flex justify-center">Ajouter</x-button>
 			</div>
 		</form>
 	</x-container>
-
-
 <script>
     function previewImage(event) {
       const file = event.target.files[0];
