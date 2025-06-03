@@ -11,9 +11,11 @@
                 Lists utilisateurs
             </a>
         </li>
-        <li class="mb-2 flex gap-3">
-            <img src="{{ Vite::asset('resources/images/user-circle.svg') }}" class="w-6 h-6 text-white" alt="image user">                
-            <span class="first-letter:uppercase">{{ Auth::user()->name }}</span>
+        <li class="mb-2">
+            <a href="{{ route('users.edit', Auth::user()->id) }}" class="flex gap-3">
+                <img src="{{ Vite::asset('resources/images/user-circle.svg') }}" class="w-6 h-6 text-white" alt="image user">                
+                <span class="first-letter:uppercase">{{ Auth::user()->name }}</span>
+            </a>
         </li>
         <li class="mb-2 flex gap-3">
             <form method="POST" action="{{route('logout')}}">
