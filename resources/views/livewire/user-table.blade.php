@@ -18,7 +18,7 @@
                         x-on:click ="open = !open" 
                         class="flex justify-center font-bold !text-gray-600 !bg-[#f9fafb] !border !border-gray-300 !py-[10px] inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150"
                         type="button"
-                >
+                    >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="w-4 h-4 gap-1">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z"/>
                     </svg>
@@ -42,11 +42,12 @@
             x-show="open" x-transition 
             class="flex items-center gap-3">
             <div class="flex items-center gap-1">
-                <label class="text-sm font-medium text-gray-600">Perpage: </label>
+                {{-- <label class="text-sm font-medium text-gray-600">Perpage: </label> --}}
                 <select 
                     wire:model.live='perpage'
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-100">
-                    <option value="5">5</option>
+                    <option value="">Page Number to display</option>
+                    {{-- <option value="5">5</option> --}}
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="50">50</option>
@@ -54,11 +55,11 @@
                 </select>
             </div>
             <div class="flex items-center gap-1">
-                <label class="text-sm font-medium text-gray-900">Role :</label>
+                {{-- <label class="text-sm font-medium text-gray-900">Role :</label> --}}
                 <select 
                     wire:model.live='is_admin'
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-100">
-                    <option value="">All User</option>
+                    <option value="">All user Role</option>
                     <option value="User">User</option>
                     <option value="Admin">Admin</option>
                 </select>
@@ -67,6 +68,16 @@
     </div>
     <div>
         <table class="min-w-full table-fixed border-collapse bg-white p-6">
+            @can('can-crud')
+                <x-button 
+                        x-show="is_bulkAction"
+                        x-cloak
+                        form="bulkDelete" 
+                        class="space-y-6 bg-red-500 hover:bg-red-400 transition mb-5"
+                >
+                    Supprimer la selection
+                </x-button>
+            @endcan
             <thead class="">
                 <tr>
                     <x-table-head-column class="!w-[5px]">
@@ -110,7 +121,13 @@
                 @foreach($users as $user)
                     <tr class="hover:bg-gray-50 hover:shadow-md transition">
                         <td class="px-1 py-3">
-                            <input type="checkbox" name="user_ids[]" value="{{ $user->id }}" class="rounded border border-blue-600/20 text-purple-300 shadow-lg">
+                            <input  x-transition
+                                    x-on:click ="is_bulkAction = !is_bulkAction"
+                                    type="checkbox" 
+                                    name="user_ids[]" 
+                                    value="{{ $user->id }}" 
+                                    class="rounded border border-blue-600/20 text-purple-300 shadow-lg"
+                            >
                         </td>
                         <td class="py-3 flex items-center gap-4">
                             <span class="drop-shadow-xl">
@@ -138,8 +155,9 @@
                         </td>
                         <td class="pl-0 pr-4 py-4 flex items-center justify-end gap-4">
                             @can('can-crud')
-                                <a href="{{ route('users.edit', $user->id) }}" class="text-green-500 ml-2">
-                                    <img src="{{ Vite::asset('resources/images/pencil-square.svg') }}" width="25px" alt="modify icon" class="drop-shadow-xl">
+                                <a href="{{ route('users.edit', $user->id) }}" class="text-[#62679F] ml-2 p-1 rounded flex gap-1">
+                                    <img src="{{ Vite::asset('resources/images/pencil-square.svg') }}" width="20px" alt="modify icon" class="drop-shadow-xl">
+                                    Edit
                                 </a>
 
                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
@@ -155,7 +173,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="p-6 bg-white">
+        <div class="p-6 bg-white paginator-selector">
             {{ $users->links() }}
         </div>
     </div>

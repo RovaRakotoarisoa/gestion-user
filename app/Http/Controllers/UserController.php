@@ -78,7 +78,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //Authorizattion
+        //Authorization
+
+        //can edit if this is a profile of this user
+        // Gate::authorize('can-edit-profile');
+        
         Gate::authorize('can-crud');
 
         $user = User::findOrFail($id);

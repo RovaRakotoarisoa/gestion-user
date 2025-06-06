@@ -24,5 +24,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('can-crud', function($user){
             return $user->role === 'Admin';
         });
+        // Gate::define('can-edit-profile', function($user){
+        //     return $user->id;
+        // });
     }
 }
