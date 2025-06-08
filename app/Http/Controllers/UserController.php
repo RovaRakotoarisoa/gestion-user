@@ -153,7 +153,7 @@ class UserController extends Controller
         Gate::authorize('can-crud');
         
         $userIds = $request->input('user_ids',[]);
-        
+        // dd($userIds);
         if(empty($userIds)){
             return redirect()->back();//->delete()->with('error','une erreur')
         }

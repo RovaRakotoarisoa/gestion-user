@@ -8,7 +8,7 @@
 	        <h2 class="text-xl font-semibold text-gray-700 mb-4 text-center">Photo de profil</h2>
 
 	        <div class="relative w-32 h-32 mx-auto">
-	          <img id="preview" src="https://via.placeholder.com/150"
+	          <img id="preview" src="{{ asset('storage/' . $user->profile_photo_path) }}"
 	               class="h-32 object-cover rounded-full bg-gray-50 border-4 border-white shadow-2xl" />
 	          <label for="avatar"
 	                 class="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow hover:bg-gray-100 cursor-pointer transition">

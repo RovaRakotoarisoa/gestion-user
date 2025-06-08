@@ -18,6 +18,20 @@ class UserTable extends Component
     public $sortBy = 'created_at';
     public $sortDir = 'DESC';
 
+    // Pour reinitialiser le numero de la page 
+    public function updatedSearch(){
+        $this->resetPage();
+    }
+
+    // Pour reinitialiser le numero de la page
+    public function updatedPerpage(){
+        $this->resetPage();
+    }
+
+    public function updatedIsAdmin(){
+        $this->resetPage();
+    }
+
     public function setSortBy($sortByField){
         if ($this->sortBy === $sortByField) {
             
