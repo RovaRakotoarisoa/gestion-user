@@ -14,7 +14,11 @@
         <li class="mb-2">
             {{-- @can('can-edit-profile') --}}
         <a href="{{ route('users.edit', Auth::user()->id) }}" class="flex gap-3">
-            <img src="{{ Vite::asset('resources/images/user-circle.svg') }}" class="w-6 h-6 text-white" alt="image user">                
+            @if (Auth::user()->profile_photo_path)
+                <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile" class="w-6 h-6 rounded-full object-cover">
+            @else
+                <img src="{{ Vite::asset('resources/images/user-circle.svg') }}" class="w-6 h-6 text-white" alt="image user">
+            @endif               
             <span class="first-letter:uppercase">{{ Auth::user()->name }}</span>
         </a>
             {{-- @endcan --}}
