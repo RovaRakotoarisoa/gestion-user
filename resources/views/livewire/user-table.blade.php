@@ -64,6 +64,9 @@
                     <option value="Admin">Admin</option>
                 </select>
             </div>
+            <div class="flex items-center gap-1">
+                <input type="date" name="createAt" id="createAt" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg">
+            </div>
         </div>
     </div>
     <div>
@@ -171,7 +174,8 @@
                                     @method('DELETE')
                                     <button 
                                             x-transition
-                                            x-on:click ="modal = true"  
+                                            x-on:click ="modal = true"
+                                            type="button" 
                                             class="text-red-500 ml-2">
                                         <img src="{{ Vite::asset('resources/images/trash.svg') }}" width="25px" alt="delete icon" class="drop-shadow-xl">
                                     </button>
@@ -182,11 +186,11 @@
                 @endforeach
                 <div 
                     x-show="modal"
-                    class="p-8 bg-white absolute flex flex-col justify-center items-center">
+                    class="p-8 bg-white absolute flex flex-col justify-center items-center z-10">
                     <p class="text-xl">Are you sure</p>
                     <span class="gap-1">
                         <button form="delete" class="bg-green-300 rounded-lg p-4">YES</button>
-                        <button class="bg-red-300 rounded-lg p-4" x-on:click ="modal = false">No</button>
+                        <button type="button" class="bg-red-300 rounded-lg p-4" x-on:click="modal = false">No</button>
                     </span>
                 </div>
             </tbody>
