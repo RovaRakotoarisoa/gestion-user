@@ -1,6 +1,6 @@
 <div id="user-table" class="space-y-4">
     <div
-         x-data="{open: false, modal: false}" x-cloak 
+         x-data="{open: false}" x-cloak 
          class="bg-white p-6 rounded-lg flex-col space-y-10"
         >
         <div class="flex justify-between items-center">
@@ -65,11 +65,11 @@
                 </select>
             </div>
             <div class="flex items-center gap-1">
-                <input type="date" name="createAt" id="createAt" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg">
+                <input type="date" name="fromDate" id="fromDate" wire:model.live="fromDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg">
             </div>
         </div>
     </div>
-    <div>
+    <div x-data="{modal: false}" x-cloak>
         <table class="min-w-full table-fixed border-collapse bg-white p-6">
             @can('can-crud')
                 <x-button 
@@ -162,7 +162,11 @@
                                     <img src="{{ Vite::asset('resources/images/pencil-square.svg') }}" width="20px" alt="modify icon" class="drop-shadow-xl">
                                     Edit
                                 </a>
-
+                                {{-- 
+                                    ************************************************
+                                    ************************************************
+                                    ************************************************
+                                    --}}
                                 {{--
                                     PROBLEME TO SOLVE
                                     Probleme with route 
@@ -172,27 +176,33 @@
                                 <form id="delete" action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
+                                    {{-- 
+                                    ************************************************
+                                    ************************************************
+                                    ************************************************
+                                    --}}
+                                    {{--Le modal s affiche en boucle faut regler cela --}}
                                     <button 
                                             x-transition
                                             x-on:click ="modal = true"
-                                            type="button" 
+                                            type="button"
                                             class="text-red-500 ml-2">
                                         <img src="{{ Vite::asset('resources/images/trash.svg') }}" width="25px" alt="delete icon" class="drop-shadow-xl">
                                     </button>
+                                    <div 
+                                        x-show="modal"
+                                        class="p-8 bg-white absolute flex flex-col justify-center items-center z-10">
+                                        <p class="text-xl">Are you sure</p>
+                                        <span class="gap-1">
+                                            <button form="delete" class="bg-green-300 rounded-lg p-4">YES</button>
+                                            <button type="button" class="bg-red-300 rounded-lg p-4" x-on:click="modal = false">No</button>
+                                        </span>
+                                    </div>
                                 </form>
                             @endcan
                         </td>
                     </tr>
-                @endforeach
-                <div 
-                    x-show="modal"
-                    class="p-8 bg-white absolute flex flex-col justify-center items-center z-10">
-                    <p class="text-xl">Are you sure</p>
-                    <span class="gap-1">
-                        <button form="delete" class="bg-green-300 rounded-lg p-4">YES</button>
-                        <button type="button" class="bg-red-300 rounded-lg p-4" x-on:click="modal = false">No</button>
-                    </span>
-                </div>
+                @endforeach    
             </tbody>
         </table>
         <div class="p-6 bg-white paginator-selector">
