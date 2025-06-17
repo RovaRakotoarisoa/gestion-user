@@ -14,6 +14,8 @@ class UserTable extends Component
     public $perpage = 5;
     public $search = '';
     public $is_admin = '';
+    // public $fromDate = '';
+
 
     public $sortBy = 'created_at';
     public $sortDir = 'DESC';
@@ -52,6 +54,9 @@ class UserTable extends Component
                 ->when($this->is_admin !== '', function($query){
                     $query->where('role', $this->is_admin);
                 })
+                // ->when($this->fromDate, function ($query) {
+                //     $query->where('created_at', '>=', $this->fromDate);
+                // })
                 ->orderBy($this->sortBy, $this->sortDir)
                 ->paginate($this->perpage)
             ]
