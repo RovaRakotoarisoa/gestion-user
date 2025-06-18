@@ -69,7 +69,7 @@
             </div>
         </div>
     </div>
-    <div x-data="{modal: false}" x-cloak>
+    <div>
         <table class="min-w-full table-fixed border-collapse bg-white p-6">
             @can('can-crud')
                 <x-button 
@@ -122,7 +122,9 @@
             </thead>
             <tbody class="divide-y divide-gray-200">
                 @foreach($users as $user)
-                    <tr class="hover:bg-gray-50 hover:shadow-md transition">
+                    <tr x-data="{ modal: false }" x-cloak
+                        class="hover:bg-gray-50 hover:shadow-md transition"
+                        >
                         <td class="px-1 py-3">
                             <input  x-transition
                                     x-on:click ="is_bulkAction = !is_bulkAction"
@@ -162,26 +164,9 @@
                                     <img src="{{ Vite::asset('resources/images/pencil-square.svg') }}" width="20px" alt="modify icon" class="drop-shadow-xl">
                                     Edit
                                 </a>
-                                {{-- 
-                                    ************************************************
-                                    ************************************************
-                                    ************************************************
-                                    --}}
-                                {{--
-                                    PROBLEME TO SOLVE
-                                    Probleme with route 
-                                    It delete when route is only localhost/users 
-                                    but not where route is localhost/users?page=2 
-                                --}}
-                                <form id="delete" action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
+                                <form id="delete-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    {{-- 
-                                    ************************************************
-                                    ************************************************
-                                    ************************************************
-                                    --}}
-                                    {{--Le modal s affiche en boucle faut regler cela --}}
                                     <button 
                                             x-transition
                                             x-on:click ="modal = true"
@@ -190,14 +175,40 @@
                                         <img src="{{ Vite::asset('resources/images/trash.svg') }}" width="25px" alt="delete icon" class="drop-shadow-xl">
                                     </button>
                                     <div 
-                                        x-show="modal"
-                                        class="p-8 bg-white absolute flex flex-col justify-center items-center z-10">
-                                        <p class="text-xl">Are you sure</p>
-                                        <span class="gap-1">
-                                            <button form="delete" class="bg-green-300 rounded-lg p-4">YES</button>
-                                            <button type="button" class="bg-red-300 rounded-lg p-4" x-on:click="modal = false">No</button>
-                                        </span>
+                                    x-show="modal"
+                                    x-cloak
+                                    x-transition
+                                    x-on:close.stop="modal = false"
+                                    x-on:keydown.escape.window="modal = false"
+                                    class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+                                        >
+                                        <div 
+                                            x-transition.scale
+                                            class="w-full max-w-xl !h-[18rem] mx-auto bg-white rounded-2xl shadow-xl p-8 flex flex-col justify-between items-center"
+                                            x-on:close.stop="modal = false"
+                                            >
+                                            <p class="text-4xl font-semibold text-center text-gray-600 mb-4">
+                                                Confirmez-vous la Suppression 
+                                                <div class="question-mark bg-red-400 py-4 px-7 rounded-full text-4xl text-white font-semibold shadow-xl shadow-red-400">?</div> 
+                                            </p>
+                                            <div class="mt-10 flex justify-center gap-6 w-full">
+                                                <button 
+                                                    form="delete-{{ $user->id }}" 
+                                                    class="font-bold !text-gray-600 !bg-[#f9fafb] !border !border-gray-300 hover:!bg-purple-300 hover:!text-white px-6 py-3 rounded-xl w-full transition"
+                                                >
+                                                    Oui
+                                                </button>
+                                                <button 
+                                                    type="button" 
+                                                    class="bg-red-400 hover:bg-red-500 text-white px-6 py-3 rounded-xl w-full transition"
+                                                    @click="modal = false"
+                                                    >
+                                                    Annuler
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </form>
                             @endcan
                         </td>
