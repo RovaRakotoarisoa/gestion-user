@@ -38,36 +38,39 @@
                 </div>
             </div>
         </div>
-        <div
-            x-show="open" x-transition 
-            class="flex items-center gap-3">
-            <div class="flex items-center gap-1">
-                {{-- <label class="text-sm font-medium text-gray-600">Perpage: </label> --}}
-                <select 
-                    wire:model.live='perpage'
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-100">
-                    <option value="5">Page Number to display</option>
-                    {{-- <option value="5">5</option> --}}
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
+        <template  x-if="open" x-transition>
+                <div
+                
+                class="flex items-center gap-3">
+                <div class="flex items-center gap-1">
+                    {{-- <label class="text-sm font-medium text-gray-600">Perpage: </label> --}}
+                    <select 
+                        wire:model.live='perpage'
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-100">
+                        <option value="5">Page Number to display</option>
+                        {{-- <option value="5">5</option> --}}
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-1">
+                    {{-- <label class="text-sm font-medium text-gray-900">Role :</label> --}}
+                    <select 
+                        wire:model.live='is_admin'
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-100">
+                        <option value="">All user Role</option>
+                        <option value="User">User</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-1">
+                    <input type="date" name="fromDate" id="fromDate" wire:model.live="fromDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg">
+                </div>
             </div>
-            <div class="flex items-center gap-1">
-                {{-- <label class="text-sm font-medium text-gray-900">Role :</label> --}}
-                <select 
-                    wire:model.live='is_admin'
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-100">
-                    <option value="">All user Role</option>
-                    <option value="User">User</option>
-                    <option value="Admin">Admin</option>
-                </select>
-            </div>
-            <div class="flex items-center gap-1">
-                <input type="date" name="fromDate" id="fromDate" wire:model.live="fromDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg">
-            </div>
-        </div>
+        </template>
+        
     </div>
     <div>
         <table class="min-w-full table-fixed border-collapse bg-white p-6">
